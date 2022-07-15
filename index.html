@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS24199 - Lê Hoàng Gia Khánh</title>
+    <style>
+        body{
+            display: flex;
+            height: 100vh;
+            background-color: #10587A;
+        }
+        .game-wrapper{
+            width: fit-content;
+            height: fit-content;
+            margin: auto auto;
+            background-color: white;
+            border: 1px solid rgb(190, 190, 190);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        h1 {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            color: #10587A;
+        }
+        button.tile{
+            width: 100px;
+            height: 100px;
+            font-size: 1.5em;
+            border-radius: 10px;
+            background-color: #76E0C9;
+            color: #76E0C9;
+            border: none;
+            margin: 3px;
+            transition: .4s;
+        }
+        button.tile:hover{
+            background-color: #67c5b0;
+            color: #67c5b0;
+        }
+        button#newgame{
+            background-color: #10587A;
+            color: white;
+            width: 100px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            transition: .4s;
+            cursor: pointer;
+        }
+        button#newgame:hover{
+            background-color: #187eae;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-wrapper">
+        <h1>Tic Tac Toe</h1>
+        <table class="container">
+            <tr>
+                <td><button class="tile" onclick="mark(0)">1</button></td>
+                <td><button class="tile" onclick="mark(1)">2</button></td>
+                <td><button class="tile" onclick="mark(2)">3</button></td>
+            </tr>
+            <tr>
+                <td><button class="tile" onclick="mark(3)">4</button></td>
+                <td><button class="tile" onclick="mark(4)">5</button></td>
+                <td><button class="tile" onclick="mark(5)">6</button></td>
+            </tr>
+            <tr>
+                <td><button class="tile" onclick="mark(6)">7</button></td>
+                <td><button class="tile" onclick="mark(7)">8</button></td>
+                <td><button class="tile" onclick="mark(8)">9</button></td>
+            </tr>
+        </table>
+        <button id="newgame" style="display: none;" onclick="location.reload()">New Game</button>
+    </div>
+    
+    <script>
+        var flag = true;
+        var count = 0;
+
+        function mark(index){
+            var button = document.getElementsByTagName("button")[index];
+            button.innerText = flag? "X":"O";
+            button.style.background = flag? "#4B8DAD":"#E4B8B2";
+            button.style.color = "white";
+            button.disabled=true;
+            flag = !flag;
+            var btn = document.getElementsByTagName("button");
+            count++;
+            if (((btn[0].innerText == btn [1].innerText) && (btn[1].innerText == btn[2].innerText)) || ((btn[3].innerText == btn [4].innerText) && (btn[4].innerText == btn[5].innerText)) || ((btn[6].innerText == btn [7].innerText) && (btn[7].innerText == btn[8].innerText)) || ((btn[0].innerText == btn [3].innerText) && (btn[3].innerText == btn[6].innerText)) || ((btn[1].innerText == btn [4].innerText) && (btn[4].innerText == btn[7].innerText)) || ((btn[2].innerText == btn [5].innerText) && (btn[5].innerText == btn[8].innerText)) || ((btn[0].innerText == btn [4].innerText) && (btn[4].innerText == btn[8].innerText)) || ((btn[2].innerText == btn [4].innerText) && (btn[4].innerText == btn[6].innerText))){
+                alert("Game Over!");
+                var newGameBtn = document.getElementById("newgame");
+                newGameBtn.style.display = "";
+            }
+            else if (count >= 9){
+                alert("Hòa!");
+                var newGameBtn = document.getElementById("newgame");
+                newGameBtn.style.display = "";
+            }
+        }
+    </script>
+</body>
+</html>
